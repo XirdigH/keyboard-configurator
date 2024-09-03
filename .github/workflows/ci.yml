@@ -37,7 +37,7 @@ jobs:
     needs: linux-x86_64
     steps:
     - run: sudo apt-get install xvfb
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4.1.7
       with:
         name: keyboard-configurator-linux-x86_64-${{ github.sha }}
     - run: chmod +x keyboard-configurator-x86_64.AppImage
@@ -73,7 +73,7 @@ jobs:
     runs-on: windows-latest
     needs: windows-mingw32
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4.1.7
       with:
         name: keyboard-configurator-mingw32-${{ github.sha }}
     - run: msiexec /i keyboard-configurator.msi /qb
@@ -102,7 +102,7 @@ jobs:
     runs-on: macos-latest
     needs: macos
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4.1.7
       with:
         name: keyboard-configurator-macos-${{ github.sha }}
     - run: mkdir mnt && hdiutil attach keyboard-configurator.dmg -mountpoint $PWD/mnt
@@ -116,7 +116,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: echo VERSION=$(./.github/workflows/version.py) > $GITHUB_ENV
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v4.1.7
     - uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
